@@ -1,0 +1,441 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+.app{background:#FFFEF8;font-family:system-ui,sans-serif;}
+.nav{background:#1A8C5B;padding:0 24px;height:52px;display:flex;align-items:center;justify-content:space-between;gap:4px;}
+.nav-right{display:flex;gap:4px;align-items:center;}
+.nav-btn{background:transparent;border:0.5px solid rgba(255,255,255,0.35);color:#fff;font-size:13px;padding:6px 14px;border-radius:8px;cursor:pointer;}
+.nav-btn:hover{background:rgba(255,255,255,0.15);}
+.nav-btn.active{background:rgba(255,255,255,0.2);border-color:rgba(255,255,255,0.6);}
+.sim-btn{background:#F5C842;border:none;color:#112B1E;font-size:12px;font-weight:500;padding:6px 14px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:6px;}
+.sim-btn:hover{background:#e8b830;}
+.sim-dot{width:7px;height:7px;border-radius:50%;background:#1A8C5B;display:inline-block;}
+.sim-dot.pub{background:#D97B0A;}
+.profile-band{background:#F2FAF6;border-bottom:0.5px solid #C5EDD8;padding:20px 24px;display:flex;align-items:center;gap:18px;}
+.pub-band{background:#FEF3E8;border-bottom:0.5px solid #F5B942;}
+.avatar{width:64px;height:64px;border-radius:50%;background:#1A8C5B;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:500;color:#fff;flex-shrink:0;}
+.avatar.pub{background:#D97B0A;}
+.profile-name{font-size:20px;font-weight:500;color:#112B1E;}
+.profile-sub{font-size:13px;color:#0A5235;margin-top:3px;}
+.profile-sub.pub{color:#9B4F00;}
+.profile-stats{display:flex;gap:20px;margin-top:6px;}
+.stat{font-size:13px;color:#0A5235;}
+.stat span{font-weight:500;color:#112B1E;}
+.profile-actions{display:flex;gap:8px;margin-left:auto;}
+.btn-outline{background:#fff;border:0.5px solid #6DC49A;color:#0A5235;font-size:13px;padding:7px 16px;border-radius:8px;cursor:pointer;}
+.btn-outline:hover{background:#EEFAF5;}
+.btn-outline.pub{border-color:#F5B942;color:#9B4F00;}
+.btn-outline.pub:hover{background:#FEF3E8;}
+.section{padding:20px 24px;}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.section-title{font-size:14px;font-weight:500;color:#0A5235;text-transform:uppercase;letter-spacing:0.07em;}
+.section-title.pub{color:#9B4F00;}
+.books-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+.book-card{background:#fff;border:0.5px solid #C5EDD8;border-radius:12px;overflow:hidden;}
+.book-card:hover{border-color:#6DC49A;}
+.book-cover{height:140px;display:flex;align-items:flex-end;padding:10px;}
+.c1{background:#2D6A4F;}.c2{background:#1B4332;}.c3{background:#40916C;}.c4{background:#0A5235;}.c5{background:#52B788;}
+.cover-title{color:#fff;font-size:13px;font-weight:500;line-height:1.3;}
+.cover-author{color:rgba(255,255,255,0.7);font-size:11px;margin-top:2px;}
+.book-footer{padding:10px 12px;}
+.progress-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.progress-pct{font-size:13px;font-weight:500;color:#112B1E;}
+.progress-page{font-size:11px;color:#0A5235;}
+.progress-track{height:6px;background:#C5EDD8;border-radius:3px;overflow:hidden;}
+.progress-fill{height:100%;background:#1A8C5B;border-radius:3px;transition:width 0.4s ease;}
+.log-btn{width:100%;margin-top:8px;background:#F2FAF6;border:0.5px solid #6DC49A;color:#0A5235;font-size:12px;padding:6px 0;border-radius:6px;cursor:pointer;}
+.log-btn:hover{background:#C5EDD8;}
+.divider{height:0.5px;background:#C5EDD8;margin:0 24px;}
+.feed-section{padding:16px 24px 24px;}
+.feed-item{display:flex;gap:12px;padding:12px 0;border-bottom:0.5px solid #C5EDD8;}
+.feed-dot{width:8px;height:8px;border-radius:50%;background:#1A8C5B;margin-top:5px;flex-shrink:0;}
+.feed-text{font-size:13px;color:#112B1E;line-height:1.5;}
+.feed-time{font-size:11px;color:#0A5235;margin-top:3px;}
+.feed-hl{color:#1A8C5B;font-weight:500;}
+.toast{background:#112B1E;color:#C5EDD8;font-size:13px;padding:10px 18px;border-radius:8px;text-align:center;margin:12px 24px 0;}
+.overlay{display:none;position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(17,43,30,0.5);align-items:flex-start;justify-content:center;padding-top:70px;z-index:10;}
+.overlay.open{display:flex;}
+.modal{background:#fff;border-radius:14px;border:0.5px solid #C5EDD8;padding:24px;width:100%;max-width:400px;}
+.modal-title{font-size:16px;font-weight:500;color:#112B1E;margin-bottom:4px;}
+.modal-sub{font-size:13px;color:#0A5235;margin-bottom:18px;}
+.field-label{font-size:12px;font-weight:500;color:#0A5235;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
+.field-label.pub{color:#9B4F00;}
+.page-input-row{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.finput{width:100%;padding:8px 12px;border:0.5px solid #6DC49A;border-radius:8px;font-size:14px;color:#112B1E;background:#fff;margin-bottom:12px;}
+.finput:focus{outline:none;border-color:#1A8C5B;box-shadow:0 0 0 2px rgba(26,140,91,0.15);}
+.finput.pub{border-color:#F5B942;}
+.finput.pub:focus{border-color:#D97B0A;box-shadow:0 0 0 2px rgba(217,123,10,0.15);}
+.finput.sm{width:120px;margin-bottom:0;}
+.of-total{font-size:14px;color:#0A5235;}
+.pct-display{font-size:28px;font-weight:500;color:#1A8C5B;margin-bottom:4px;}
+.pct-track{height:8px;background:#C5EDD8;border-radius:4px;overflow:hidden;margin-bottom:18px;}
+.pct-fill{height:100%;background:#1A8C5B;border-radius:4px;transition:width 0.2s;}
+.share-row{display:flex;align-items:center;gap:10px;margin-bottom:20px;padding:10px 12px;background:#F2FAF6;border-radius:8px;border:0.5px solid #C5EDD8;}
+.share-check{accent-color:#1A8C5B;width:15px;height:15px;cursor:pointer;}
+.share-label{font-size:13px;color:#112B1E;}
+.modal-actions{display:flex;gap:10px;}
+.btn-primary{flex:1;background:#1A8C5B;color:#fff;border:none;padding:10px 0;border-radius:8px;font-size:14px;cursor:pointer;font-weight:500;}
+.btn-primary:hover{background:#0A5235;}
+.btn-primary.pub{background:#D97B0A;}
+.btn-primary.pub:hover{background:#9B4F00;}
+.btn-cancel{background:#F2FAF6;border:0.5px solid #6DC49A;color:#0A5235;padding:10px 18px;border-radius:8px;font-size:14px;cursor:pointer;}
+.btn-cancel:hover{background:#C5EDD8;}
+.book-select{width:100%;padding:9px 12px;border:0.5px solid #6DC49A;border-radius:8px;font-size:14px;color:#112B1E;background:#fff;margin-bottom:16px;cursor:pointer;}
+.book-select:focus{outline:none;border-color:#1A8C5B;}
+.pub-catalog{display:flex;flex-direction:column;gap:10px;margin-top:4px;}
+.pub-row{background:#FEF3E8;border:0.5px solid #F5B942;border-radius:10px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;}
+.pub-row-info{}
+.pub-row-title{font-size:14px;font-weight:500;color:#2C1500;}
+.pub-row-meta{font-size:12px;color:#9B4F00;margin-top:2px;}
+.pub-badge{font-size:11px;background:#D97B0A;color:#fff;padding:3px 9px;border-radius:20px;}
+.pub-badge.new{background:#1A8C5B;}
+.pub-section{padding:20px 24px 24px;}
+.empty-state{text-align:center;padding:32px 0;color:#6DC49A;font-size:14px;}
+</style>
+
+<h2 class="sr-only">Dual-account book logging app — reader and publisher views</h2>
+
+<div style="position:relative;" id="root">
+  <div class="app" id="app-content">
+
+    <div class="nav" id="main-nav">
+      <div id="nav-account-label" style="color:#fff;font-size:13px;opacity:0.8;"></div>
+      <div class="nav-right">
+        <div id="nav-links"></div>
+        <button class="sim-btn" id="sim-btn" onclick="toggleAccount()">
+          <span class="sim-dot" id="sim-dot"></span>
+          <span id="sim-label"></span>
+        </button>
+      </div>
+    </div>
+
+    <div id="profile-band-area"></div>
+    <div id="main-area"></div>
+    <div id="toast-area"></div>
+
+  </div>
+
+  <div class="overlay" id="overlay" onclick="handleOverlayClick(event)">
+    <div class="modal" id="modal-box"></div>
+  </div>
+</div>
+
+<script>
+const READER = 'reader', PUBLISHER = 'publisher';
+let mode = READER;
+
+const catalog = [
+  {id:0, title:'The Overstory', author:'Richard Powers', publisher:'W. W. Norton', pages:502, isbn:'978-0393356687', coverClass:'c1'},
+  {id:1, title:'Bewilderment', author:'Richard Powers', publisher:'W. W. Norton', pages:278, isbn:'978-0593301357', coverClass:'c2'},
+  {id:2, title:'Prodigal Summer', author:'Barbara Kingsolver', publisher:'HarperCollins', pages:444, isbn:'978-0060959050', coverClass:'c3'},
+  {id:3, title:'Demon Copperhead', author:'Barbara Kingsolver', publisher:'HarperCollins', pages:560, isbn:'978-0063251922', coverClass:'c4'},
+  {id:4, title:'Braiding Sweetgrass', author:'Robin Wall Kimmerer', publisher:'Milkweed Editions', pages:390, isbn:'978-1571313560', coverClass:'c5'},
+];
+
+const readerBooks = [
+  {catalogId:0, current:265},
+  {catalogId:1, current:267},
+  {catalogId:2, current:85},
+];
+
+let nextCatalogId = catalog.length;
+
+function getCatalogBook(id){ return catalog.find(b=>b.id===id); }
+
+function render(){
+  mode === READER ? renderReader() : renderPublisher();
+}
+
+function renderReader(){
+  document.getElementById('nav-account-label').textContent = 'viewing as: reader';
+  document.getElementById('sim-dot').className = 'sim-dot pub';
+  document.getElementById('sim-label').textContent = 'switch to publisher';
+
+  document.getElementById('nav-links').innerHTML = `
+    <div style="display:flex;gap:4px;">
+      <button class="nav-btn" onclick="scrollFeed()">activity feed</button>
+      <button class="nav-btn">friends</button>
+      <button class="nav-btn">clubs</button>
+      <button class="nav-btn active">my library</button>
+      <button class="nav-btn">edit profile</button>
+      <button class="nav-btn">logout</button>
+    </div>`;
+
+  document.getElementById('profile-band-area').innerHTML = `
+    <div class="profile-band">
+      <div class="avatar">SR</div>
+      <div>
+        <div class="profile-name">sam_reads</div>
+        <div class="profile-stats">
+          <div class="stat"><span>${readerBooks.length}</span> reading now</div>
+          <div class="stat"><span>84</span> finished</div>
+          <div class="stat"><span>31</span> friends</div>
+          <div class="stat"><span>6</span> clubs</div>
+        </div>
+      </div>
+      <div class="profile-actions">
+        <button class="btn-outline">edit profile</button>
+        <button class="btn-outline">logout</button>
+      </div>
+    </div>`;
+
+  let cardsHTML = readerBooks.map((rb,i) => {
+    const b = getCatalogBook(rb.catalogId);
+    const pct = Math.round((rb.current/b.pages)*100);
+    return `<div class="book-card">
+      <div class="book-cover ${b.coverClass}"><div><div class="cover-title">${b.title}</div><div class="cover-author">${b.author}</div></div></div>
+      <div class="book-footer">
+        <div class="progress-label"><span class="progress-pct" id="pct-${i}">${pct}%</span><span class="progress-page" id="plabel-${i}">p. ${rb.current} / ${b.pages}</span></div>
+        <div class="progress-track"><div class="progress-fill" id="bar-${i}" style="width:${pct}%"></div></div>
+        <button class="log-btn" onclick="openLogModal(${i})">log progress</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('main-area').innerHTML = `
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">currently reading</div>
+        <button class="log-btn" style="width:auto;margin:0;padding:7px 16px;font-size:13px;background:#1A8C5B;color:#fff;border-color:#1A8C5B;" onclick="openAddToShelfModal()">+ add to shelf</button>
+      </div>
+      <div class="books-grid" id="books-grid">${cardsHTML}</div>
+    </div>
+    <div class="divider"></div>
+    <div class="feed-section" id="feed-section">
+      <div class="section-header" style="margin-bottom:10px;"><div class="section-title">activity feed</div></div>
+      <div id="feed-list">
+        <div class="feed-item"><div class="feed-dot"></div><div><div class="feed-text">You updated progress on <span class="feed-hl">The Overstory</span> — 50% complete</div><div class="feed-time">2h ago</div></div></div>
+        <div class="feed-item"><div class="feed-dot" style="background:#0A5235;"></div><div><div class="feed-text"><span class="feed-hl">priya_reads</span> finished <span class="feed-hl">Demon Copperhead</span> and gave it 5 stars</div><div class="feed-time">5h ago</div></div></div>
+        <div class="feed-item"><div class="feed-dot" style="background:#6DC49A;"></div><div><div class="feed-text">You started reading <span class="feed-hl">Prodigal Summer</span></div><div class="feed-time">yesterday</div></div></div>
+        <div class="feed-item"><div class="feed-dot" style="background:#0A5235;"></div><div><div class="feed-text"><span class="feed-hl">tom_pages</span> is 67% through <span class="feed-hl">Bewilderment</span></div><div class="feed-time">2 days ago</div></div></div>
+      </div>
+    </div>`;
+}
+
+function renderPublisher(){
+  document.getElementById('nav-account-label').textContent = 'viewing as: publisher';
+  document.getElementById('sim-dot').className = 'sim-dot';
+  document.getElementById('sim-label').textContent = 'switch to reader';
+
+  document.getElementById('nav-links').innerHTML = `
+    <div style="display:flex;gap:4px;">
+      <button class="nav-btn active">my catalog</button>
+      <button class="nav-btn">analytics</button>
+      <button class="nav-btn">settings</button>
+      <button class="nav-btn">logout</button>
+    </div>`;
+
+  document.getElementById('profile-band-area').innerHTML = `
+    <div class="profile-band pub-band">
+      <div class="avatar pub">GP</div>
+      <div>
+        <div class="profile-name">Greenleaf Press</div>
+        <div class="profile-sub pub">publisher account &nbsp;&middot;&nbsp; ${catalog.length} titles in catalog</div>
+      </div>
+      <div class="profile-actions">
+        <button class="btn-outline pub">account settings</button>
+      </div>
+    </div>`;
+
+  const newIds = catalog.slice(5).map(b=>b.id);
+  const rows = catalog.map(b => {
+    const isNew = newIds.includes(b.id);
+    return `<div class="pub-row">
+      <div class="pub-row-info">
+        <div class="pub-row-title">${b.title}</div>
+        <div class="pub-row-meta">${b.author} &nbsp;&middot;&nbsp; ${b.pages} pages &nbsp;&middot;&nbsp; ISBN ${b.isbn}</div>
+      </div>
+      <span class="pub-badge${isNew?' new':''}">${isNew?'new upload':'published'}</span>
+    </div>`;
+  }).join('');
+
+  const emptyState = catalog.length === 0 ? `<div class="empty-state">No titles uploaded yet.</div>` : '';
+
+  document.getElementById('main-area').innerHTML = `
+    <div class="pub-section">
+      <div class="section-header">
+        <div class="section-title pub">catalog</div>
+        <button style="background:#D97B0A;color:#fff;border:none;font-size:13px;padding:7px 16px;border-radius:8px;cursor:pointer;font-weight:500;" onclick="openUploadModal()">+ upload book</button>
+      </div>
+      <div class="pub-catalog" id="pub-catalog">${emptyState}${rows}</div>
+    </div>`;
+}
+
+function toggleAccount(){
+  mode = mode === READER ? PUBLISHER : READER;
+  render();
+  showToast('switched to ' + (mode === READER ? 'reader' : 'publisher') + ' account');
+}
+
+function openLogModal(idx){
+  const rb = readerBooks[idx];
+  const b = getCatalogBook(rb.catalogId);
+  const pct = Math.round((rb.current/b.pages)*100);
+
+  const options = catalog.map(c =>
+    `<option value="${c.id}" ${c.id===rb.catalogId?'selected':''}>${c.title} — ${c.author}</option>`
+  ).join('');
+
+  document.getElementById('modal-box').innerHTML = `
+    <div class="modal-title">log progress</div>
+    <div class="modal-sub">update your current page</div>
+    <div class="field-label">book</div>
+    <select class="book-select" id="book-select" onchange="switchBookInModal(${idx})">
+      ${options}
+    </select>
+    <div class="field-label">current page</div>
+    <div class="page-input-row">
+      <input class="finput sm" type="number" id="page-in" value="${rb.current}" min="1" max="${b.pages}" oninput="updatePct()"/>
+      <div class="of-total" id="of-total">of ${b.pages} pages</div>
+    </div>
+    <div class="pct-display" id="modal-pct">${pct}%</div>
+    <div class="pct-track"><div class="pct-fill" id="modal-bar" style="width:${pct}%"></div></div>
+    <div class="share-row">
+      <input type="checkbox" class="share-check" id="share-check" checked/>
+      <label class="share-label" for="share-check">share this update to my activity feed</label>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">cancel</button>
+      <button class="btn-primary" onclick="submitProgress(${idx})">submit progress</button>
+    </div>`;
+  window._logIdx = idx;
+  openOverlay();
+}
+
+function switchBookInModal(originalIdx){
+  const sel = parseInt(document.getElementById('book-select').value);
+  const b = getCatalogBook(sel);
+  const rb = readerBooks[originalIdx];
+  const currentPage = rb.catalogId === sel ? rb.current : 0;
+  const pct = Math.round((currentPage/b.pages)*100);
+  document.getElementById('page-in').value = currentPage;
+  document.getElementById('page-in').max = b.pages;
+  document.getElementById('of-total').textContent = 'of ' + b.pages + ' pages';
+  document.getElementById('modal-pct').textContent = pct + '%';
+  document.getElementById('modal-bar').style.width = pct + '%';
+  readerBooks[originalIdx].catalogId = sel;
+  readerBooks[originalIdx].current = currentPage;
+}
+
+function updatePct(){
+  const idx = window._logIdx;
+  const b = getCatalogBook(readerBooks[idx].catalogId);
+  const val = Math.min(parseInt(document.getElementById('page-in').value)||0, b.pages);
+  const pct = Math.round((val/b.pages)*100);
+  document.getElementById('modal-pct').textContent = pct+'%';
+  document.getElementById('modal-bar').style.width = pct+'%';
+}
+
+function submitProgress(idx){
+  const rb = readerBooks[idx];
+  const b = getCatalogBook(rb.catalogId);
+  const val = Math.min(parseInt(document.getElementById('page-in').value)||0, b.pages);
+  const shared = document.getElementById('share-check').checked;
+  const pct = Math.round((val/b.pages)*100);
+  readerBooks[idx].current = val;
+  closeModal();
+  renderReader();
+  if(shared) addFeedItem(b.title, pct);
+  showToast((pct===100?'finished ':'progress saved — ')+pct+'% of '+b.title+(shared?' · shared to feed':''));
+}
+
+function openAddToShelfModal(){
+  const alreadyOnShelf = readerBooks.map(rb=>rb.catalogId);
+  const available = catalog.filter(b=>!alreadyOnShelf.includes(b.id));
+  if(available.length === 0){
+    showToast('all catalog books are already on your shelf');
+    return;
+  }
+  const opts = available.map(b=>`<option value="${b.id}">${b.title} — ${b.author}</option>`).join('');
+  document.getElementById('modal-box').innerHTML = `
+    <div class="modal-title">add to shelf</div>
+    <div class="modal-sub">choose a book to start tracking</div>
+    <div class="field-label">select a book</div>
+    <select class="book-select" id="shelf-select">${opts}</select>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">cancel</button>
+      <button class="btn-primary" onclick="addToShelf()">add to shelf</button>
+    </div>`;
+  openOverlay();
+}
+
+function addToShelf(){
+  const id = parseInt(document.getElementById('shelf-select').value);
+  readerBooks.push({catalogId:id, current:0});
+  closeModal();
+  renderReader();
+  showToast(getCatalogBook(id).title + ' added to your shelf');
+}
+
+function openUploadModal(){
+  document.getElementById('modal-box').innerHTML = `
+    <div class="modal-title" style="color:#2C1500;">upload a book</div>
+    <div class="modal-sub" style="color:#9B4F00;margin-bottom:18px;">add a new title to your publisher catalog</div>
+    <div class="field-label pub">book title</div>
+    <input class="finput pub" placeholder="e.g. The Hidden Life of Trees" id="up-title"/>
+    <div class="field-label pub">author</div>
+    <input class="finput pub" placeholder="e.g. Peter Wohlleben" id="up-author"/>
+    <div class="field-label pub">publisher name</div>
+    <input class="finput pub" placeholder="e.g. Greenleaf Press" id="up-pub"/>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div>
+        <div class="field-label pub">page count</div>
+        <input class="finput pub" type="number" placeholder="288" id="up-pages" style="margin-bottom:0;"/>
+      </div>
+      <div>
+        <div class="field-label pub">ISBN</div>
+        <input class="finput pub" placeholder="978-XXXXXXXXXX" id="up-isbn" style="margin-bottom:0;"/>
+      </div>
+    </div>
+    <div style="height:20px;"></div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">cancel</button>
+      <button class="btn-primary pub" onclick="uploadBook()">upload book</button>
+    </div>`;
+  openOverlay();
+}
+
+function uploadBook(){
+  const t = document.getElementById('up-title').value.trim();
+  const a = document.getElementById('up-author').value.trim();
+  const p = document.getElementById('up-pub').value.trim();
+  const pages = parseInt(document.getElementById('up-pages').value)||0;
+  const isbn = document.getElementById('up-isbn').value.trim();
+  if(!t||!a||!p||pages<1||!isbn){showToast('please fill in all fields');return;}
+  const covers = ['c1','c2','c3','c4','c5'];
+  catalog.push({id:nextCatalogId++, title:t, author:a, publisher:p, pages:pages, isbn:isbn, coverClass:covers[catalog.length%5]});
+  closeModal();
+  renderPublisher();
+  showToast('"'+t+'" uploaded to catalog — now visible to readers');
+}
+
+function openOverlay(){ document.getElementById('overlay').classList.add('open'); }
+
+function handleOverlayClick(e){
+  if(e.target===document.getElementById('overlay')) closeModal();
+}
+
+function closeModal(){ document.getElementById('overlay').classList.remove('open'); }
+
+function addFeedItem(title, pct){
+  const fl = document.getElementById('feed-list');
+  if(!fl) return;
+  const item = document.createElement('div');
+  item.className = 'feed-item';
+  item.innerHTML = `<div class="feed-dot"></div><div><div class="feed-text">You updated progress on <span class="feed-hl">${title}</span> — ${pct}% complete</div><div class="feed-time">just now</div></div>`;
+  fl.insertBefore(item, fl.firstChild);
+}
+
+function showToast(msg){
+  const ta = document.getElementById('toast-area');
+  ta.innerHTML = `<div class="toast">${msg}</div>`;
+  setTimeout(()=>{ ta.innerHTML=''; }, 3200);
+}
+
+function scrollFeed(){
+  const f = document.getElementById('feed-section');
+  if(f) f.scrollIntoView({behavior:'smooth'});
+}
+
+render();
+</script>
