@@ -1,20 +1,35 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>ReadAlong Demo</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-.app{background:#FFFEF8;font-family:system-ui,sans-serif;}
-.nav{background:#1A8C5B;padding:0 24px;height:52px;display:flex;align-items:center;justify-content:space-between;gap:4px;}
-.nav-right{display:flex;gap:4px;align-items:center;}
-.nav-btn{background:transparent;border:0.5px solid rgba(255,255,255,0.35);color:#fff;font-size:13px;padding:6px 14px;border-radius:8px;cursor:pointer;}
+body{background:#FFFEF8;font-family:system-ui,sans-serif;}
+
+/* DEMO SWITCHER BAR */
+.demo-bar{background:#0A1F14;padding:0 24px;height:34px;display:flex;align-items:center;gap:8px;}
+.demo-bar-label{color:rgba(255,255,255,0.35);font-size:11px;margin-right:4px;}
+.demo-btn{background:transparent;border:0.5px solid rgba(245,200,66,0.35);color:rgba(245,200,66,0.6);font-size:11px;font-weight:500;padding:4px 13px;border-radius:6px;cursor:pointer;white-space:nowrap;}
+.demo-btn:hover{background:rgba(245,200,66,0.1);color:#F5C842;border-color:rgba(245,200,66,0.6);}
+.demo-btn.active{background:#F5C842;color:#112B1E;border-color:#F5C842;}
+
+/* NAV */
+.nav{background:#1A8C5B;padding:0 24px;height:52px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.nav-left{color:#fff;font-size:13px;opacity:0.8;white-space:nowrap;flex-shrink:0;}
+.nav-center{display:flex;gap:4px;flex:1;justify-content:center;}
+.nav-btn{background:transparent;border:0.5px solid rgba(255,255,255,0.35);color:#fff;font-size:13px;padding:6px 14px;border-radius:8px;cursor:pointer;white-space:nowrap;}
 .nav-btn:hover{background:rgba(255,255,255,0.15);}
 .nav-btn.active{background:rgba(255,255,255,0.2);border-color:rgba(255,255,255,0.6);}
-.sim-btn{background:#F5C842;border:none;color:#112B1E;font-size:12px;font-weight:500;padding:6px 14px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:6px;}
-.sim-btn:hover{background:#e8b830;}
-.sim-dot{width:7px;height:7px;border-radius:50%;background:#1A8C5B;display:inline-block;}
-.sim-dot.pub{background:#D97B0A;}
+
+
+/* PROFILE BAND */
 .profile-band{background:#F2FAF6;border-bottom:0.5px solid #C5EDD8;padding:20px 24px;display:flex;align-items:center;gap:18px;}
 .pub-band{background:#FEF3E8;border-bottom:0.5px solid #F5B942;}
 .avatar{width:64px;height:64px;border-radius:50%;background:#1A8C5B;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:500;color:#fff;flex-shrink:0;}
 .avatar.pub{background:#D97B0A;}
+.avatar.club{background:#2D6A4F;border-radius:14px;font-size:20px;}
 .profile-name{font-size:20px;font-weight:500;color:#112B1E;}
 .profile-sub{font-size:13px;color:#0A5235;margin-top:3px;}
 .profile-sub.pub{color:#9B4F00;}
@@ -26,11 +41,15 @@
 .btn-outline:hover{background:#EEFAF5;}
 .btn-outline.pub{border-color:#F5B942;color:#9B4F00;}
 .btn-outline.pub:hover{background:#FEF3E8;}
+
+/* SECTION */
 .section{padding:20px 24px;}
 .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
 .section-title{font-size:14px;font-weight:500;color:#0A5235;text-transform:uppercase;letter-spacing:0.07em;}
 .section-title.pub{color:#9B4F00;}
-.books-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+
+/* BOOKS */
+.books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;}
 .book-card{background:#fff;border:0.5px solid #C5EDD8;border-radius:12px;overflow:hidden;}
 .book-card:hover{border-color:#6DC49A;}
 .book-cover{height:140px;display:flex;align-items:flex-end;padding:10px;}
@@ -45,6 +64,8 @@
 .progress-fill{height:100%;background:#1A8C5B;border-radius:3px;transition:width 0.4s ease;}
 .log-btn{width:100%;margin-top:8px;background:#F2FAF6;border:0.5px solid #6DC49A;color:#0A5235;font-size:12px;padding:6px 0;border-radius:6px;cursor:pointer;}
 .log-btn:hover{background:#C5EDD8;}
+
+/* FEED */
 .divider{height:0.5px;background:#C5EDD8;margin:0 24px;}
 .feed-section{padding:16px 24px 24px;}
 .feed-item{display:flex;gap:12px;padding:12px 0;border-bottom:0.5px solid #C5EDD8;}
@@ -52,10 +73,14 @@
 .feed-text{font-size:13px;color:#112B1E;line-height:1.5;}
 .feed-time{font-size:11px;color:#0A5235;margin-top:3px;}
 .feed-hl{color:#1A8C5B;font-weight:500;}
+
+/* TOAST */
 .toast{background:#112B1E;color:#C5EDD8;font-size:13px;padding:10px 18px;border-radius:8px;text-align:center;margin:12px 24px 0;}
-.overlay{display:none;position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(17,43,30,0.5);align-items:flex-start;justify-content:center;padding-top:70px;z-index:10;}
+
+/* OVERLAY / MODAL */
+.overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(17,43,30,0.5);align-items:flex-start;justify-content:center;padding-top:80px;z-index:100;}
 .overlay.open{display:flex;}
-.modal{background:#fff;border-radius:14px;border:0.5px solid #C5EDD8;padding:24px;width:100%;max-width:400px;}
+.modal{background:#fff;border-radius:14px;border:0.5px solid #C5EDD8;padding:24px;width:100%;max-width:420px;margin:0 16px;}
 .modal-title{font-size:16px;font-weight:500;color:#112B1E;margin-bottom:4px;}
 .modal-sub{font-size:13px;color:#0A5235;margin-bottom:18px;}
 .field-label{font-size:12px;font-weight:500;color:#0A5235;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
@@ -82,53 +107,94 @@
 .btn-cancel:hover{background:#C5EDD8;}
 .book-select{width:100%;padding:9px 12px;border:0.5px solid #6DC49A;border-radius:8px;font-size:14px;color:#112B1E;background:#fff;margin-bottom:16px;cursor:pointer;}
 .book-select:focus{outline:none;border-color:#1A8C5B;}
+
+/* PUBLISHER */
 .pub-catalog{display:flex;flex-direction:column;gap:10px;margin-top:4px;}
 .pub-row{background:#FEF3E8;border:0.5px solid #F5B942;border-radius:10px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;}
-.pub-row-info{}
 .pub-row-title{font-size:14px;font-weight:500;color:#2C1500;}
 .pub-row-meta{font-size:12px;color:#9B4F00;margin-top:2px;}
-.pub-badge{font-size:11px;background:#D97B0A;color:#fff;padding:3px 9px;border-radius:20px;}
+.pub-badge{font-size:11px;background:#D97B0A;color:#fff;padding:3px 9px;border-radius:20px;flex-shrink:0;}
 .pub-badge.new{background:#1A8C5B;}
 .pub-section{padding:20px 24px 24px;}
 .empty-state{text-align:center;padding:32px 0;color:#6DC49A;font-size:14px;}
+
+/* CREATE CLUB */
+.create-club-body{padding:24px;}
+.create-club-title{font-size:20px;font-weight:500;color:#112B1E;margin-bottom:4px;}
+.create-club-sub{font-size:13px;color:#0A5235;margin-bottom:22px;}
+.create-form-grid{display:grid;grid-template-columns:1fr 130px;gap:24px;align-items:start;max-width:640px;}
+.create-form-fields{display:flex;flex-direction:column;gap:14px;}
+.finput-select{width:100%;padding:8px 32px 8px 12px;border:0.5px solid #6DC49A;border-radius:8px;font-size:14px;color:#112B1E;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230A5235' fill='none' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 12px center;cursor:pointer;appearance:none;}
+.finput-select:focus{outline:none;border-color:#1A8C5B;box-shadow:0 0 0 2px rgba(26,140,91,0.15);}
+.checkbox-row{display:flex;align-items:center;gap:10px;padding:10px 12px;background:#F2FAF6;border-radius:8px;border:0.5px solid #C5EDD8;}
+.checkbox-row input{accent-color:#1A8C5B;width:15px;height:15px;cursor:pointer;}
+.checkbox-row label{font-size:13px;color:#112B1E;cursor:pointer;}
+.checkbox-hint{font-size:11px;color:#0A5235;}
+textarea.finput{resize:vertical;min-height:86px;line-height:1.5;margin-bottom:0;}
+.upload-col{display:flex;flex-direction:column;gap:8px;}
+.upload-col-label{font-size:12px;font-weight:500;color:#0A5235;text-transform:uppercase;letter-spacing:0.06em;}
+.upload-box{width:100%;aspect-ratio:1;border:1.5px dashed #6DC49A;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;background:#F2FAF6;}
+.upload-box:hover{background:#C5EDD8;}
+.upload-icon-circle{width:32px;height:32px;border-radius:50%;background:#C5EDD8;display:flex;align-items:center;justify-content:center;}
+.upload-lbl{font-size:12px;font-weight:500;color:#0A5235;text-align:center;padding:0 6px;}
+.upload-hint{font-size:11px;color:#6DC49A;text-align:center;}
+.form-actions{display:flex;gap:10px;margin-top:4px;}
+.btn-create{background:#1A8C5B;color:#fff;border:none;padding:10px 24px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;}
+.btn-create:hover{background:#0A5235;}
+
+/* CHALLENGES */
+.tab-bar{display:flex;border-bottom:0.5px solid #C5EDD8;padding:0 24px;}
+.tab{font-size:14px;color:#0A5235;padding:12px 0;margin-right:24px;cursor:pointer;border-bottom:2px solid transparent;user-select:none;}
+.tab.active{color:#1A8C5B;font-weight:500;border-bottom-color:#1A8C5B;}
+.challenges-body{padding:20px 24px 28px;}
+.challenges-list{display:flex;flex-direction:column;gap:12px;}
+.challenge-card{background:#fff;border:0.5px solid #C5EDD8;border-radius:12px;padding:14px 16px;display:flex;align-items:flex-start;justify-content:space-between;gap:14px;}
+.challenge-card:hover{border-color:#6DC49A;}
+.challenge-cover{width:40px;height:54px;border-radius:6px;flex-shrink:0;}
+.challenge-info{flex:1;min-width:0;}
+.challenge-goal{font-size:15px;font-weight:500;color:#112B1E;margin-bottom:2px;}
+.challenge-book{font-size:13px;color:#1A8C5B;font-weight:500;}
+.challenge-author{font-size:12px;color:#0A5235;}
+.challenge-poster{display:flex;align-items:center;gap:6px;margin-top:8px;}
+.poster-av{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:500;color:#fff;flex-shrink:0;}
+.poster-name{font-size:12px;color:#0A5235;}
+.complete-btn{background:#F2FAF6;border:0.5px solid #6DC49A;color:#0A5235;font-size:13px;font-weight:500;padding:7px 16px;border-radius:8px;cursor:pointer;white-space:nowrap;flex-shrink:0;align-self:center;}
+.complete-btn:hover{background:#C5EDD8;}
+.complete-btn.done{background:#1A8C5B;color:#fff;border-color:#1A8C5B;}
+.complete-btn.done:hover{background:#0A5235;}
+.add-challenge-btn{background:#1A8C5B;color:#fff;border:none;font-size:13px;padding:7px 16px;border-radius:8px;cursor:pointer;font-weight:500;}
+.add-challenge-btn:hover{background:#0A5235;}
 </style>
+</head>
+<body>
 
+<div id="demo-bar" class="demo-bar"></div>
 
-<div style="position:relative;" id="root">
-  <div class="app" id="app-content">
+<div id="main-nav" class="nav">
+  <div class="nav-left" id="nav-account-label"></div>
+  <div class="nav-center" id="nav-links"></div>
 
-    <div class="nav" id="main-nav">
-      <div id="nav-account-label" style="color:#fff;font-size:13px;opacity:0.8;"></div>
-      <div class="nav-right">
-        <div id="nav-links"></div>
-        <button class="sim-btn" id="sim-btn" onclick="toggleAccount()">
-          <span class="sim-dot" id="sim-dot"></span>
-          <span id="sim-label"></span>
-        </button>
-      </div>
-    </div>
+</div>
 
-    <div id="profile-band-area"></div>
-    <div id="main-area"></div>
-    <div id="toast-area"></div>
+<div id="profile-band-area"></div>
+<div id="main-area"></div>
+<div id="toast-area"></div>
 
-  </div>
-
-  <div class="overlay" id="overlay" onclick="handleOverlayClick(event)">
-    <div class="modal" id="modal-box"></div>
-  </div>
+<div class="overlay" id="overlay" onclick="handleOverlayClick(event)">
+  <div class="modal" id="modal-box"></div>
 </div>
 
 <script>
 const READER = 'reader', PUBLISHER = 'publisher';
 let mode = READER;
+let demo = 'my-library';
 
 const catalog = [
-  {id:0, title:'The Overstory', author:'Richard Powers', publisher:'W. W. Norton', pages:502, isbn:'978-0393356687', coverClass:'c1'},
-  {id:1, title:'Bewilderment', author:'Richard Powers', publisher:'W. W. Norton', pages:278, isbn:'978-0593301357', coverClass:'c2'},
-  {id:2, title:'Prodigal Summer', author:'Barbara Kingsolver', publisher:'HarperCollins', pages:444, isbn:'978-0060959050', coverClass:'c3'},
-  {id:3, title:'Demon Copperhead', author:'Barbara Kingsolver', publisher:'HarperCollins', pages:560, isbn:'978-0063251922', coverClass:'c4'},
-  {id:4, title:'Braiding Sweetgrass', author:'Robin Wall Kimmerer', publisher:'Milkweed Editions', pages:390, isbn:'978-1571313560', coverClass:'c5'},
+  {id:0, title:'The Overstory',      author:'Richard Powers',      publisher:'W. W. Norton',     pages:502, isbn:'978-0393356687', coverClass:'c1'},
+  {id:1, title:'Bewilderment',       author:'Richard Powers',      publisher:'W. W. Norton',     pages:278, isbn:'978-0593301357', coverClass:'c2'},
+  {id:2, title:'Prodigal Summer',    author:'Barbara Kingsolver',  publisher:'HarperCollins',    pages:444, isbn:'978-0060959050', coverClass:'c3'},
+  {id:3, title:'Demon Copperhead',   author:'Barbara Kingsolver',  publisher:'HarperCollins',    pages:560, isbn:'978-0063251922', coverClass:'c4'},
+  {id:4, title:'Braiding Sweetgrass',author:'Robin Wall Kimmerer', publisher:'Milkweed Editions',pages:390, isbn:'978-1571313560', coverClass:'c5'},
 ];
 
 const readerBooks = [
@@ -139,27 +205,77 @@ const readerBooks = [
 
 let nextCatalogId = catalog.length;
 
+let challenges = [
+  {id:0, goal:'Reach 30% of The Hobbit', book:'The Hobbit', author:'J.R.R. Tolkien',      coverClass:'c1', posterInitials:'JS', posterColor:'#40916C', posterName:'james_maxwell', done:false},
+  {id:1, goal:'Finish Eragon',           book:'Eragon',     author:'Christopher Paolini', coverClass:'c2', posterInitials:'EF', posterColor:'#D97B0A', posterName:'eragon_fan123',done:false},
+];
+let nextChallengeId = challenges.length;
+
 function getCatalogBook(id){ return catalog.find(b=>b.id===id); }
 
 function render(){
-  mode === READER ? renderReader() : renderPublisher();
+  renderDemoBar();
+  renderNav();
+  if(demo==='my-library')  renderReader();
+  else if(demo==='publisher')   renderPublisher();
+  else if(demo==='create-club') renderCreateClub();
+  else if(demo==='challenges')  renderChallenges();
+}
+
+function renderDemoBar(){
+  const screens = [
+    {key:'my-library',  label:'My Library'},
+    {key:'publisher',   label:'Publisher'},
+    {key:'create-club', label:'Create Club'},
+    {key:'challenges',  label:'Challenges'},
+  ];
+  document.getElementById('demo-bar').innerHTML =
+    '<span class="demo-bar-label">demo screens:</span>' +
+    screens.map(s =>
+      `<button class="demo-btn${demo===s.key?' active':''}" onclick="switchDemo('${s.key}')">${s.label}</button>`
+    ).join('');
+}
+
+function renderNav(){
+  document.getElementById('nav-account-label').textContent =
+    (demo==='publisher') ? 'viewing as: publisher' : 'viewing as: reader';
+
+  let links = '';
+  if(demo==='my-library'){
+    links = `
+      <button class="nav-btn">activity feed</button>
+      <button class="nav-btn">friends</button>
+      <button class="nav-btn" >clubs</button>
+      <button class="nav-btn active">my library</button>
+      <button class="nav-btn">edit profile</button>`;
+  } else if(demo==='publisher'){
+    links = `
+      <button class="nav-btn active">my catalog</button>
+      <button class="nav-btn">analytics</button>
+      <button class="nav-btn">settings</button>`;
+  } else if(demo==='create-club'){
+    links = `
+      <button class="nav-btn">activity feed</button>
+      <button class="nav-btn">friends</button>
+      <button class="nav-btn active">clubs</button>
+      <button class="nav-btn" >my library</button>`;
+  } else if(demo==='challenges'){
+    links = `
+      <button class="nav-btn">activity feed</button>
+      <button class="nav-btn">friends</button>
+      <button class="nav-btn active">clubs</button>
+      <button class="nav-btn" >my library</button>`;
+  }
+  document.getElementById('nav-links').innerHTML = links;
+}
+
+function switchDemo(d){
+  demo = d;
+  mode = d==='publisher' ? PUBLISHER : READER;
+  render();
 }
 
 function renderReader(){
-  document.getElementById('nav-account-label').textContent = 'viewing as: reader';
-  document.getElementById('sim-dot').className = 'sim-dot pub';
-  document.getElementById('sim-label').textContent = 'switch to publisher';
-
-  document.getElementById('nav-links').innerHTML = `
-    <div style="display:flex;gap:4px;">
-      <button class="nav-btn" onclick="scrollFeed()">activity feed</button>
-      <button class="nav-btn">friends</button>
-      <button class="nav-btn">clubs</button>
-      <button class="nav-btn active">my library</button>
-      <button class="nav-btn">edit profile</button>
-      <button class="nav-btn">logout</button>
-    </div>`;
-
   document.getElementById('profile-band-area').innerHTML = `
     <div class="profile-band">
       <div class="avatar">SR</div>
@@ -178,14 +294,14 @@ function renderReader(){
       </div>
     </div>`;
 
-  let cardsHTML = readerBooks.map((rb,i) => {
+  const cardsHTML = readerBooks.map((rb,i) => {
     const b = getCatalogBook(rb.catalogId);
     const pct = Math.round((rb.current/b.pages)*100);
     return `<div class="book-card">
       <div class="book-cover ${b.coverClass}"><div><div class="cover-title">${b.title}</div><div class="cover-author">${b.author}</div></div></div>
       <div class="book-footer">
-        <div class="progress-label"><span class="progress-pct" id="pct-${i}">${pct}%</span><span class="progress-page" id="plabel-${i}">p. ${rb.current} / ${b.pages}</span></div>
-        <div class="progress-track"><div class="progress-fill" id="bar-${i}" style="width:${pct}%"></div></div>
+        <div class="progress-label"><span class="progress-pct">${pct}%</span><span class="progress-page">p. ${rb.current} / ${b.pages}</span></div>
+        <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
         <button class="log-btn" onclick="openLogModal(${i})">log progress</button>
       </div>
     </div>`;
@@ -197,7 +313,7 @@ function renderReader(){
         <div class="section-title">currently reading</div>
         <button class="log-btn" style="width:auto;margin:0;padding:7px 16px;font-size:13px;background:#1A8C5B;color:#fff;border-color:#1A8C5B;" onclick="openAddToShelfModal()">+ add to shelf</button>
       </div>
-      <div class="books-grid" id="books-grid">${cardsHTML}</div>
+      <div class="books-grid">${cardsHTML}</div>
     </div>
     <div class="divider"></div>
     <div class="feed-section" id="feed-section">
@@ -212,18 +328,6 @@ function renderReader(){
 }
 
 function renderPublisher(){
-  document.getElementById('nav-account-label').textContent = 'viewing as: publisher';
-  document.getElementById('sim-dot').className = 'sim-dot';
-  document.getElementById('sim-label').textContent = 'switch to reader';
-
-  document.getElementById('nav-links').innerHTML = `
-    <div style="display:flex;gap:4px;">
-      <button class="nav-btn active">my catalog</button>
-      <button class="nav-btn">analytics</button>
-      <button class="nav-btn">settings</button>
-      <button class="nav-btn">logout</button>
-    </div>`;
-
   document.getElementById('profile-band-area').innerHTML = `
     <div class="profile-band pub-band">
       <div class="avatar pub">GP</div>
@@ -240,7 +344,7 @@ function renderPublisher(){
   const rows = catalog.map(b => {
     const isNew = newIds.includes(b.id);
     return `<div class="pub-row">
-      <div class="pub-row-info">
+      <div>
         <div class="pub-row-title">${b.title}</div>
         <div class="pub-row-meta">${b.author} &nbsp;&middot;&nbsp; ${b.pages} pages &nbsp;&middot;&nbsp; ISBN ${b.isbn}</div>
       </div>
@@ -248,40 +352,172 @@ function renderPublisher(){
     </div>`;
   }).join('');
 
-  const emptyState = catalog.length === 0 ? `<div class="empty-state">No titles uploaded yet.</div>` : '';
-
   document.getElementById('main-area').innerHTML = `
     <div class="pub-section">
       <div class="section-header">
         <div class="section-title pub">catalog</div>
         <button style="background:#D97B0A;color:#fff;border:none;font-size:13px;padding:7px 16px;border-radius:8px;cursor:pointer;font-weight:500;" onclick="openUploadModal()">+ upload book</button>
       </div>
-      <div class="pub-catalog" id="pub-catalog">${emptyState}${rows}</div>
+      <div class="pub-catalog">${catalog.length===0?'<div class="empty-state">No titles uploaded yet.</div>':''}${rows}</div>
     </div>`;
 }
 
-function toggleAccount(){
-  mode = mode === READER ? PUBLISHER : READER;
-  render();
-  showToast('switched to ' + (mode === READER ? 'reader' : 'publisher') + ' account');
+function renderCreateClub(){
+  document.getElementById('profile-band-area').innerHTML = '';
+  document.getElementById('main-area').innerHTML = `
+    <div class="create-club-body">
+      <div class="create-club-title">Create club</div>
+      <div class="create-club-sub">Start a new reading group for friends, colleagues, or the public</div>
+      <div class="create-form-grid">
+        <div class="create-form-fields">
+          <div>
+            <div class="field-label">Name</div>
+            <input class="finput" style="margin-bottom:0;" placeholder="e.g. Midnight Readers" id="club-name"/>
+          </div>
+          <div>
+            <div class="field-label">Genre</div>
+            <select class="finput-select" id="club-genre">
+              <option value="">select genre</option>
+              <option>Fantasy</option><option>Science Fiction</option><option>Literary Fiction</option>
+              <option>Non-fiction</option><option>Mystery</option><option>Historical Fiction</option>
+            </select>
+          </div>
+          <div class="checkbox-row">
+            <input type="checkbox" id="club-private"/>
+            <label for="club-private">Private <span class="checkbox-hint">— members join by invite only</span></label>
+          </div>
+          <div>
+            <div class="field-label">Description</div>
+            <textarea class="finput" id="club-desc" placeholder="Describe your club..."></textarea>
+          </div>
+          <div class="form-actions">
+            <button class="btn-cancel" onclick="showToast('cancelled')">cancel</button>
+            <button class="btn-create" onclick="createClub()">create club</button>
+          </div>
+        </div>
+        <div class="upload-col">
+          <div class="upload-col-label">Icon</div>
+          <div class="upload-box" onclick="showToast('image upload coming soon')">
+            <div class="upload-icon-circle">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M8 2v8M4.5 5.5L8 2l3.5 3.5" stroke="#0A5235" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 12h12" stroke="#0A5235" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="upload-lbl">Upload image</div>
+            <div class="upload-hint">PNG, JPG up to 2MB</div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function createClub(){
+  const name  = document.getElementById('club-name').value.trim();
+  const genre = document.getElementById('club-genre').value;
+  if(!name)  { showToast('please enter a club name'); return; }
+  if(!genre) { showToast('please select a genre'); return; }
+  showToast('"' + name + '" club created — invite your friends!');
+  document.getElementById('club-name').value = '';
+  document.getElementById('club-genre').value = '';
+  document.getElementById('club-desc').value = '';
+}
+
+function renderChallenges(){
+  document.getElementById('profile-band-area').innerHTML = `
+    <div class="profile-band">
+      <div class="avatar club">M</div>
+      <div>
+        <div class="profile-name">My Club</div>
+        <div class="profile-sub">Fantasy &nbsp;·&nbsp; 12 members &nbsp;·&nbsp; public</div>
+      </div>
+      <div class="profile-actions">
+        <button class="btn-outline">leave club</button>
+      </div>
+    </div>`;
+
+  const rows = challenges.map(c => `
+    <div class="challenge-card">
+      <div class="challenge-cover ${c.coverClass}"></div>
+      <div class="challenge-info">
+        <div class="challenge-goal">${c.goal}</div>
+        <div class="challenge-book">${c.book}</div>
+        <div class="challenge-author">${c.author}</div>
+        <div class="challenge-poster">
+          <div class="poster-av" style="background:${c.posterColor};">${c.posterInitials}</div>
+          <div class="poster-name">posted by ${c.posterName}</div>
+        </div>
+      </div>
+      <button class="complete-btn${c.done?' done':''}" onclick="completeChallenge(${c.id})">
+        ${c.done ? '✓ done' : 'complete'}
+      </button>
+    </div>`).join('');
+
+  document.getElementById('main-area').innerHTML = `
+    <div class="tab-bar">
+      <div class="tab" >Feed</div>
+      <div class="tab active">Challenges</div>
+      <div class="tab">Members</div>
+    </div>
+    <div class="challenges-body">
+      <div class="section-header">
+        <div class="section-title">active challenges</div>
+        <button class="add-challenge-btn" onclick="openAddChallengeModal()">+ post challenge</button>
+      </div>
+      <div class="challenges-list">
+        ${challenges.length===0 ? '<div class="empty-state">No challenges yet — post one for the club!</div>' : rows}
+      </div>
+    </div>`;
+}
+
+function completeChallenge(id){
+  const c = challenges.find(x=>x.id===id);
+  if(!c) return;
+  c.done = !c.done;
+  renderChallenges();
+  showToast(c.done ? '"' + c.goal + '" marked complete!' : 'challenge unmarked');
+}
+
+function openAddChallengeModal(){
+  const opts = catalog.map(b=>`<option value="${b.id}">${b.title} — ${b.author}</option>`).join('');
+  document.getElementById('modal-box').innerHTML = `
+    <div class="modal-title">Post a challenge</div>
+    <div class="modal-sub">Set a reading goal for the club</div>
+    <div class="field-label">Book</div>
+    <select class="book-select" id="ch-book">${opts}</select>
+    <div class="field-label">Goal description</div>
+    <input class="finput" placeholder="e.g. Reach 50% of the book" id="ch-goal"/>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">cancel</button>
+      <button class="btn-primary" onclick="submitChallenge()">post challenge</button>
+    </div>`;
+  openOverlay();
+}
+
+function submitChallenge(){
+  const bookId = parseInt(document.getElementById('ch-book').value);
+  const goal   = document.getElementById('ch-goal').value.trim();
+  if(!goal){ showToast('please describe the goal'); return; }
+  const b = getCatalogBook(bookId);
+  challenges.push({id:nextChallengeId++, goal, book:b.title, author:b.author,
+    coverClass:b.coverClass, posterInitials:'SR', posterColor:'#1A8C5B', posterName:'sam_reads', done:false});
+  closeModal();
+  renderChallenges();
+  showToast('"' + goal + '" posted to the club!');
 }
 
 function openLogModal(idx){
-  const rb = readerBooks[idx];
-  const b = getCatalogBook(rb.catalogId);
+  const rb  = readerBooks[idx];
+  const b   = getCatalogBook(rb.catalogId);
   const pct = Math.round((rb.current/b.pages)*100);
-
-  const options = catalog.map(c =>
+  const options = catalog.map(c=>
     `<option value="${c.id}" ${c.id===rb.catalogId?'selected':''}>${c.title} — ${c.author}</option>`
   ).join('');
-
   document.getElementById('modal-box').innerHTML = `
     <div class="modal-title">log progress</div>
     <div class="modal-sub">update your current page</div>
     <div class="field-label">book</div>
-    <select class="book-select" id="book-select" onchange="switchBookInModal(${idx})">
-      ${options}
-    </select>
+    <select class="book-select" id="book-select" onchange="switchBookInModal(${idx})">${options}</select>
     <div class="field-label">current page</div>
     <div class="page-input-row">
       <input class="finput sm" type="number" id="page-in" value="${rb.current}" min="1" max="${b.pages}" oninput="updatePct()"/>
@@ -298,27 +534,28 @@ function openLogModal(idx){
       <button class="btn-primary" onclick="submitProgress(${idx})">submit progress</button>
     </div>`;
   window._logIdx = idx;
+  window._pendingCatalogId = undefined;
   openOverlay();
 }
 
 function switchBookInModal(originalIdx){
   const sel = parseInt(document.getElementById('book-select').value);
-  const b = getCatalogBook(sel);
-  const rb = readerBooks[originalIdx];
-  const currentPage = rb.catalogId === sel ? rb.current : 0;
+  const b   = getCatalogBook(sel);
+  const rb  = readerBooks[originalIdx];
+  const currentPage = rb.catalogId===sel ? rb.current : 0;
   const pct = Math.round((currentPage/b.pages)*100);
   document.getElementById('page-in').value = currentPage;
   document.getElementById('page-in').max = b.pages;
   document.getElementById('of-total').textContent = 'of ' + b.pages + ' pages';
   document.getElementById('modal-pct').textContent = pct + '%';
   document.getElementById('modal-bar').style.width = pct + '%';
-  readerBooks[originalIdx].catalogId = sel;
-  readerBooks[originalIdx].current = currentPage;
+  window._pendingCatalogId = sel;
 }
 
 function updatePct(){
   const idx = window._logIdx;
-  const b = getCatalogBook(readerBooks[idx].catalogId);
+  const catalogId = window._pendingCatalogId !== undefined ? window._pendingCatalogId : readerBooks[idx].catalogId;
+  const b = getCatalogBook(catalogId);
   const val = Math.min(parseInt(document.getElementById('page-in').value)||0, b.pages);
   const pct = Math.round((val/b.pages)*100);
   document.getElementById('modal-pct').textContent = pct+'%';
@@ -327,7 +564,11 @@ function updatePct(){
 
 function submitProgress(idx){
   const rb = readerBooks[idx];
-  const b = getCatalogBook(rb.catalogId);
+  if(window._pendingCatalogId !== undefined){
+    rb.catalogId = window._pendingCatalogId;
+    window._pendingCatalogId = undefined;
+  }
+  const b   = getCatalogBook(rb.catalogId);
   const val = Math.min(parseInt(document.getElementById('page-in').value)||0, b.pages);
   const shared = document.getElementById('share-check').checked;
   const pct = Math.round((val/b.pages)*100);
@@ -339,12 +580,9 @@ function submitProgress(idx){
 }
 
 function openAddToShelfModal(){
-  const alreadyOnShelf = readerBooks.map(rb=>rb.catalogId);
-  const available = catalog.filter(b=>!alreadyOnShelf.includes(b.id));
-  if(available.length === 0){
-    showToast('all catalog books are already on your shelf');
-    return;
-  }
+  const onShelf = readerBooks.map(rb=>rb.catalogId);
+  const available = catalog.filter(b=>!onShelf.includes(b.id));
+  if(available.length===0){ showToast('all catalog books are already on your shelf'); return; }
   const opts = available.map(b=>`<option value="${b.id}">${b.title} — ${b.author}</option>`).join('');
   document.getElementById('modal-box').innerHTML = `
     <div class="modal-title">add to shelf</div>
@@ -395,26 +633,22 @@ function openUploadModal(){
 }
 
 function uploadBook(){
-  const t = document.getElementById('up-title').value.trim();
-  const a = document.getElementById('up-author').value.trim();
-  const p = document.getElementById('up-pub').value.trim();
+  const t     = document.getElementById('up-title').value.trim();
+  const a     = document.getElementById('up-author').value.trim();
+  const p     = document.getElementById('up-pub').value.trim();
   const pages = parseInt(document.getElementById('up-pages').value)||0;
-  const isbn = document.getElementById('up-isbn').value.trim();
-  if(!t||!a||!p||pages<1||!isbn){showToast('please fill in all fields');return;}
+  const isbn  = document.getElementById('up-isbn').value.trim();
+  if(!t||!a||!p||pages<1||!isbn){ showToast('please fill in all fields'); return; }
   const covers = ['c1','c2','c3','c4','c5'];
-  catalog.push({id:nextCatalogId++, title:t, author:a, publisher:p, pages:pages, isbn:isbn, coverClass:covers[catalog.length%5]});
+  catalog.push({id:nextCatalogId++, title:t, author:a, publisher:p, pages, isbn, coverClass:covers[catalog.length%5]});
   closeModal();
   renderPublisher();
   showToast('"'+t+'" uploaded to catalog — now visible to readers');
 }
 
 function openOverlay(){ document.getElementById('overlay').classList.add('open'); }
-
-function handleOverlayClick(e){
-  if(e.target===document.getElementById('overlay')) closeModal();
-}
-
 function closeModal(){ document.getElementById('overlay').classList.remove('open'); }
+function handleOverlayClick(e){ if(e.target===document.getElementById('overlay')) closeModal(); }
 
 function addFeedItem(title, pct){
   const fl = document.getElementById('feed-list');
@@ -438,3 +672,5 @@ function scrollFeed(){
 
 render();
 </script>
+</body>
+</html>
