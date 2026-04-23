@@ -142,6 +142,60 @@ textarea.finput{resize:vertical;min-height:86px;line-height:1.5;margin-bottom:0;
 .btn-create{background:#1A8C5B;color:#fff;border:none;padding:10px 24px;border-radius:8px;font-size:20px;font-weight:500;cursor:pointer;}
 .btn-create:hover{background:#0A5235;}
 
+/* FRIEND REQUESTS */
+.friends-layout{display:grid;grid-template-columns:300px 1fr;min-height:calc(100vh - 86px);}
+.friends-sidebar{border-right:0.5px solid #C5EDD8;background:#F9FDF9;}
+.friends-sidebar-header{padding:20px 20px 14px;border-bottom:0.5px solid #C5EDD8;}
+.friends-sidebar-title{font-size:13px;font-weight:600;color:#0A5235;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;}
+.friends-nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;cursor:pointer;font-size:19px;color:#2D6A4F;margin-bottom:2px;}
+.friends-nav-item:hover{background:#EBF7F1;}
+.friends-nav-item.active{background:#D4EFE3;color:#0A5235;font-weight:500;}
+.friends-nav-item svg{flex-shrink:0;opacity:0.7;}
+.friends-nav-item.active svg{opacity:1;}
+.friends-nav-badge{margin-left:auto;background:#1A8C5B;color:#fff;font-size:13px;font-weight:600;padding:2px 7px;border-radius:20px;min-width:20px;text-align:center;}
+.friends-sidebar-section{padding:16px 20px 8px;border-top:0.5px solid #C5EDD8;margin-top:6px;}
+.friends-sidebar-section-title{font-size:12px;font-weight:600;color:#6DC49A;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;}
+.friends-sidebar-user{display:flex;align-items:center;gap:10px;padding:7px 0;}
+.fsb-av{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#fff;flex-shrink:0;}
+.fsb-name{font-size:18px;color:#112B1E;}
+.fsb-status{font-size:15px;color:#0A5235;}
+.friends-main{background:#FFFEF8;}
+.friends-main-header{padding:22px 28px 16px;border-bottom:0.5px solid #C5EDD8;display:flex;align-items:center;justify-content:space-between;}
+.friends-main-title{font-size:26px;font-weight:500;color:#112B1E;}
+.friends-main-sub{font-size:18px;color:#0A5235;margin-top:3px;}
+.friends-search-bar{display:flex;align-items:center;gap:10px;padding:14px 28px;border-bottom:0.5px solid #C5EDD8;background:#F9FDF9;}
+.friends-search-input{flex:1;padding:8px 14px;border:0.5px solid #6DC49A;border-radius:8px;font-size:19px;color:#112B1E;background:#fff;}
+.friends-search-input:focus{outline:none;border-color:#1A8C5B;box-shadow:0 0 0 2px rgba(26,140,91,0.15);}
+.friends-search-input::placeholder{color:#9DC9B3;}
+.fr-list{padding:16px 28px;display:flex;flex-direction:column;gap:10px;}
+.fr-card{background:#fff;border:0.5px solid #C5EDD8;border-radius:12px;padding:16px 18px;display:flex;align-items:center;gap:16px;transition:border-color 0.15s,box-shadow 0.15s;}
+.fr-card:hover{border-color:#6DC49A;box-shadow:0 2px 8px rgba(26,140,91,0.07);}
+.fr-avatar{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:600;color:#fff;flex-shrink:0;}
+.fr-info{flex:1;min-width:0;}
+.fr-name{font-size:21px;font-weight:500;color:#112B1E;}
+.fr-meta{font-size:17px;color:#0A5235;margin-top:2px;}
+.fr-mutual{display:flex;align-items:center;gap:5px;margin-top:5px;font-size:16px;color:#6DC49A;}
+.fr-time{font-size:15px;color:#9DC9B3;margin-left:auto;flex-shrink:0;align-self:flex-start;padding-top:2px;}
+.fr-actions{display:flex;gap:8px;flex-shrink:0;}
+.fr-accept{background:#1A8C5B;color:#fff;border:none;font-size:18px;font-weight:500;padding:8px 20px;border-radius:8px;cursor:pointer;white-space:nowrap;}
+.fr-accept:hover{background:#0A5235;}
+.fr-decline{background:#fff;border:0.5px solid #C5EDD8;color:#0A5235;font-size:18px;padding:8px 16px;border-radius:8px;cursor:pointer;white-space:nowrap;}
+.fr-decline:hover{background:#F2FAF6;border-color:#6DC49A;}
+.fr-accepted-badge{display:flex;align-items:center;gap:6px;font-size:18px;color:#1A8C5B;font-weight:500;}
+.fr-section-label{font-size:13px;font-weight:600;color:#6DC49A;text-transform:uppercase;letter-spacing:0.09em;padding:6px 0 4px;margin-top:4px;}
+.friends-empty{text-align:center;padding:48px 0;color:#9DC9B3;font-size:20px;}
+.fr-suggested-section{padding:16px 28px 28px;border-top:0.5px solid #C5EDD8;}
+.fr-suggested-title{font-size:13px;font-weight:600;color:#6DC49A;text-transform:uppercase;letter-spacing:0.09em;margin-bottom:12px;}
+.fr-suggested-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;}
+.fr-suggest-card{background:#fff;border:0.5px solid #C5EDD8;border-radius:12px;padding:16px;text-align:center;}
+.fr-suggest-card:hover{border-color:#6DC49A;}
+.fr-suggest-av{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:600;color:#fff;margin:0 auto 8px;}
+.fr-suggest-name{font-size:19px;font-weight:500;color:#112B1E;margin-bottom:2px;}
+.fr-suggest-meta{font-size:15px;color:#0A5235;margin-bottom:10px;}
+.fr-suggest-add{width:100%;background:#F2FAF6;border:0.5px solid #6DC49A;color:#0A5235;font-size:17px;padding:6px 0;border-radius:7px;cursor:pointer;}
+.fr-suggest-add:hover{background:#C5EDD8;}
+.fr-suggest-add.sent{background:#1A8C5B;color:#fff;border-color:#1A8C5B;cursor:default;}
+
 /* CHALLENGES */
 .tab-bar{display:flex;border-bottom:0.5px solid #C5EDD8;padding:0 24px;}
 .tab{font-size:21px;color:#0A5235;padding:12px 0;margin-right:24px;cursor:pointer;border-bottom:2px solid transparent;user-select:none;}
@@ -216,18 +270,20 @@ function getCatalogBook(id){ return catalog.find(b=>b.id===id); }
 function render(){
   renderDemoBar();
   renderNav();
-  if(demo==='my-library')  renderReader();
-  else if(demo==='publisher')   renderPublisher();
-  else if(demo==='create-club') renderCreateClub();
-  else if(demo==='challenges')  renderChallenges();
+  if(demo==='my-library')     renderReader();
+  else if(demo==='publisher')      renderPublisher();
+  else if(demo==='create-club')    renderCreateClub();
+  else if(demo==='challenges')     renderChallenges();
+  else if(demo==='friend-requests') renderFriendRequests();
 }
 
 function renderDemoBar(){
   const screens = [
-    {key:'my-library',  label:'My Library'},
-    {key:'publisher',   label:'Publisher'},
-    {key:'create-club', label:'Create Club'},
-    {key:'challenges',  label:'Challenges'},
+    {key:'my-library',     label:'My Library'},
+    {key:'publisher',      label:'Publisher'},
+    {key:'create-club',    label:'Create Club'},
+    {key:'challenges',     label:'Challenges'},
+    {key:'friend-requests',label:'Friend Requests'},
   ];
   document.getElementById('demo-bar').innerHTML =
     '<span class="demo-bar-label">demo screens:</span>' +
@@ -262,9 +318,15 @@ function renderNav(){
   } else if(demo==='challenges'){
     links = `
       <button class="nav-btn">activity feed</button>
-      <button class="nav-btn">friends</button>
-      <button class="nav-btn active">clubs</button>
+      <button class="nav-btn active">friends</button>
+      <button class="nav-btn">clubs</button>
       <button class="nav-btn" >my library</button>`;
+  } else if(demo==='friend-requests'){
+    links = `
+      <button class="nav-btn">activity feed</button>
+      <button class="nav-btn active">friends</button>
+      <button class="nav-btn">clubs</button>
+      <button class="nav-btn">my library</button>`;
   }
   document.getElementById('nav-links').innerHTML = links;
 }
@@ -668,6 +730,270 @@ function showToast(msg){
 function scrollFeed(){
   const f = document.getElementById('feed-section');
   if(f) f.scrollIntoView({behavior:'smooth'});
+}
+
+// ── FRIEND REQUESTS DATA ──────────────────────────────────────
+let friendRequests = [
+  {id:0, initials:'SJ', color:'#40916C', name:'sarah_jones',    meta:'Reads literary fiction · 3 books in common', mutual:4, time:'2m ago',   status:'pending'},
+  {id:1, initials:'MA', color:'#2D6A4F', name:'mike_anderson',  meta:'Reads sci-fi & fantasy · 1 book in common',  mutual:2, time:'18m ago',  status:'pending'},
+  {id:2, initials:'ED', color:'#D97B0A', name:'emily_davis',    meta:'Reads non-fiction · 5 books in common',       mutual:7, time:'1h ago',   status:'pending'},
+  {id:3, initials:'AR', color:'#1B4332', name:'alex_rodriguez', meta:'Reads mystery · 2 books in common',           mutual:1, time:'3h ago',   status:'pending'},
+  {id:4, initials:'JL', color:'#52B788', name:'jessica_lee',    meta:'Reads everything · 6 books in common',       mutual:9, time:'yesterday', status:'pending'},
+];
+
+let suggestedFriends = [
+  {id:0, initials:'PR', color:'#0A5235', name:'priya_reads',  meta:'12 mutual friends', sent:false},
+  {id:1, initials:'TP', color:'#40916C', name:'tom_pages',    meta:'8 mutual friends',  sent:false},
+  {id:2, initials:'BW', color:'#D97B0A', name:'bookworm99',   meta:'5 mutual friends',  sent:false},
+  {id:3, initials:'LN', color:'#2D6A4F', name:'luna_novel',   meta:'3 mutual friends',  sent:false},
+];
+
+let frView = 'requests';
+
+function renderFriendRequests(){
+  document.getElementById('profile-band-area').innerHTML = `
+    <div class="profile-band">
+      <div class="avatar">SR</div>
+      <div>
+        <div class="profile-name">sam_reads</div>
+        <div class="profile-stats">
+          <div class="stat"><span>31</span> friends</div>
+          <div class="stat"><span>${friendRequests.filter(r=>r.status==='pending').length}</span> pending requests</div>
+          <div class="stat"><span>6</span> clubs</div>
+        </div>
+      </div>
+      <div class="profile-actions">
+        <button class="btn-outline" onclick="openFindFriendsModal()">find friends</button>
+      </div>
+    </div>`;
+
+  const pending  = friendRequests.filter(r=>r.status==='pending');
+  const accepted = friendRequests.filter(r=>r.status==='accepted');
+
+  const sidebarHTML = `
+    <div class="friends-sidebar">
+      <div class="friends-sidebar-header">
+        <div class="friends-sidebar-title">Friends</div>
+        <div class="friends-nav-item ${frView==='requests'?'active':''}" onclick="setFrView('requests')">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7" cy="6" r="3" stroke="#0A5235" stroke-width="1.4"/><path d="M1 15c0-3.314 2.686-6 6-6" stroke="#0A5235" stroke-width="1.4" stroke-linecap="round"/><path d="M13 10v5M10.5 12.5h5" stroke="#1A8C5B" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Friend Requests
+          ${pending.length>0?`<span class="friends-nav-badge">${pending.length}</span>`:''}
+        </div>
+        <div class="friends-nav-item ${frView==='friends'?'active':''}" onclick="setFrView('friends')">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="6" cy="6" r="2.5" stroke="#0A5235" stroke-width="1.4"/><circle cx="12" cy="6" r="2.5" stroke="#0A5235" stroke-width="1.4"/><path d="M1 15c0-2.761 2.239-5 5-5h6c2.761 0 5 2.239 5 5" stroke="#0A5235" stroke-width="1.4" stroke-linecap="round"/></svg>
+          All Friends
+          <span class="friends-nav-badge" style="background:#6DC49A;">31</span>
+        </div>
+        <div class="friends-nav-item ${frView==='sent'?'active':''}" onclick="setFrView('sent')">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l13-7-5 7 5 7-13-7z" stroke="#0A5235" stroke-width="1.4" stroke-linejoin="round"/></svg>
+          Sent Requests
+        </div>
+      </div>
+      <div class="friends-sidebar-section">
+        <div class="friends-sidebar-section-title">recently accepted</div>
+        ${accepted.slice(0,3).map(r=>`
+          <div class="friends-sidebar-user">
+            <div class="fsb-av" style="background:${r.color}">${r.initials}</div>
+            <div><div class="fsb-name">${r.name}</div><div class="fsb-status">now friends ✓</div></div>
+          </div>`).join('')}
+        ${accepted.length===0?'<div style="font-size:17px;color:#9DC9B3;padding:4px 0;">No accepted requests yet</div>':''}
+      </div>
+    </div>`;
+
+  let mainHTML = '';
+  if(frView==='requests'){
+    const pendingCards = pending.map(r=>`
+      <div class="fr-card" id="fr-card-${r.id}">
+        <div class="fr-avatar" style="background:${r.color}">${r.initials}</div>
+        <div class="fr-info">
+          <div class="fr-name">${r.name}</div>
+          <div class="fr-meta">${r.meta}</div>
+          <div class="fr-mutual">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="4.5" cy="4.5" r="2" stroke="#6DC49A" stroke-width="1.2"/><circle cx="8.5" cy="4.5" r="2" stroke="#6DC49A" stroke-width="1.2"/><path d="M1 11c0-1.933 1.567-3.5 3.5-3.5h4C10.433 7.5 12 9.067 12 11" stroke="#6DC49A" stroke-width="1.2" stroke-linecap="round"/></svg>
+            ${r.mutual} mutual friends
+          </div>
+        </div>
+        <div class="fr-time">${r.time}</div>
+        <div class="fr-actions">
+          <button class="fr-decline" onclick="declineFR(${r.id})">Decline</button>
+          <button class="fr-accept" onclick="acceptFR(${r.id})">Accept</button>
+        </div>
+      </div>`).join('');
+
+    mainHTML = `
+      <div class="friends-main-header">
+        <div>
+          <div class="friends-main-title">Friend Requests</div>
+          <div class="friends-main-sub">${pending.length} pending · ${accepted.length} accepted</div>
+        </div>
+      </div>
+      <div class="friends-search-bar">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="4.5" stroke="#6DC49A" stroke-width="1.4"/><path d="M13 13l2.5 2.5" stroke="#6DC49A" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <input class="friends-search-input" placeholder="Search requests..." oninput="filterFR(this.value)"/>
+      </div>
+      <div class="fr-list" id="fr-list">
+        ${pending.length===0
+          ? `<div class="friends-empty">No pending friend requests</div>`
+          : `<div class="fr-section-label">Pending (${pending.length})</div>${pendingCards}`}
+      </div>
+      <div class="fr-suggested-section">
+        <div class="fr-suggested-title">People you may know</div>
+        <div class="fr-suggested-grid">
+          ${suggestedFriends.map(s=>`
+            <div class="fr-suggest-card">
+              <div class="fr-suggest-av" style="background:${s.color}">${s.initials}</div>
+              <div class="fr-suggest-name">${s.name}</div>
+              <div class="fr-suggest-meta">${s.meta}</div>
+              <button class="fr-suggest-add${s.sent?' sent':''}" id="suggest-btn-${s.id}" onclick="sendRequest(${s.id})">
+                ${s.sent?'✓ Request sent':'+ Add friend'}
+              </button>
+            </div>`).join('')}
+        </div>
+      </div>`;
+  } else if(frView==='friends'){
+    mainHTML = `
+      <div class="friends-main-header">
+        <div>
+          <div class="friends-main-title">All Friends</div>
+          <div class="friends-main-sub">${31+accepted.length} friends</div>
+        </div>
+      </div>
+      <div class="friends-search-bar">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="4.5" stroke="#6DC49A" stroke-width="1.4"/><path d="M13 13l2.5 2.5" stroke="#6DC49A" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <input class="friends-search-input" placeholder="Search your friends..."/>
+      </div>
+      <div class="fr-list">
+        <div class="fr-section-label">Recently active</div>
+        ${[
+          {initials:'PR',color:'#0A5235',name:'priya_reads',meta:'Finished Demon Copperhead · 5h ago',time:'5h ago'},
+          {initials:'TP',color:'#40916C',name:'tom_pages',  meta:'67% through Bewilderment · 2 days ago',time:'2d ago'},
+          {initials:'MR',color:'#D97B0A',name:'may_reads',  meta:'Started Braiding Sweetgrass · 3 days ago',time:'3d ago'},
+        ].map(f=>`
+          <div class="fr-card">
+            <div class="fr-avatar" style="background:${f.color}">${f.initials}</div>
+            <div class="fr-info">
+              <div class="fr-name">${f.name}</div>
+              <div class="fr-meta">${f.meta}</div>
+            </div>
+            <div class="fr-time">${f.time}</div>
+            <div class="fr-actions">
+              <button class="fr-decline" onclick="showToast('message feature coming soon')">message</button>
+            </div>
+          </div>`).join('')}
+        ${accepted.map(r=>`
+          <div class="fr-card">
+            <div class="fr-avatar" style="background:${r.color}">${r.initials}</div>
+            <div class="fr-info">
+              <div class="fr-name">${r.name}</div>
+              <div class="fr-meta">New friend · ${r.meta}</div>
+            </div>
+            <div class="fr-accepted-badge">✓ Friends</div>
+          </div>`).join('')}
+      </div>`;
+  } else if(frView==='sent'){
+    const sentReqs = suggestedFriends.filter(s=>s.sent);
+    mainHTML = `
+      <div class="friends-main-header">
+        <div>
+          <div class="friends-main-title">Sent Requests</div>
+          <div class="friends-main-sub">${sentReqs.length} pending</div>
+        </div>
+      </div>
+      <div class="fr-list">
+        ${sentReqs.length===0
+          ? `<div class="friends-empty">No sent requests yet<br><span style="font-size:16px;">Try adding friends from the Requests tab</span></div>`
+          : sentReqs.map(s=>`
+              <div class="fr-card">
+                <div class="fr-avatar" style="background:${s.color}">${s.initials}</div>
+                <div class="fr-info">
+                  <div class="fr-name">${s.name}</div>
+                  <div class="fr-meta">${s.meta}</div>
+                </div>
+                <div class="fr-actions">
+                  <button class="fr-decline" onclick="cancelSentRequest(${s.id})">Cancel</button>
+                </div>
+              </div>`).join('')}
+      </div>`;
+  }
+
+  document.getElementById('main-area').innerHTML = `
+    <div class="friends-layout">
+      ${sidebarHTML}
+      <div class="friends-main">${mainHTML}</div>
+    </div>`;
+}
+
+function setFrView(v){ frView=v; renderFriendRequests(); }
+
+function acceptFR(id){
+  const r = friendRequests.find(x=>x.id===id);
+  if(!r) return;
+  r.status='accepted';
+  renderFriendRequests();
+  showToast('You are now friends with ' + r.name + ' 🎉');
+}
+
+function declineFR(id){
+  const r = friendRequests.find(x=>x.id===id);
+  if(!r) return;
+  r.status='declined';
+  renderFriendRequests();
+  showToast('Request from ' + r.name + ' declined');
+}
+
+function sendRequest(id){
+  const s = suggestedFriends.find(x=>x.id===id);
+  if(!s||s.sent) return;
+  s.sent=true;
+  const btn = document.getElementById('suggest-btn-'+id);
+  if(btn){ btn.textContent='✓ Request sent'; btn.classList.add('sent'); }
+  showToast('Friend request sent to ' + s.name);
+}
+
+function cancelSentRequest(id){
+  const s = suggestedFriends.find(x=>x.id===id);
+  if(!s) return;
+  s.sent=false;
+  renderFriendRequests();
+  showToast('Request to ' + s.name + ' cancelled');
+}
+
+function filterFR(query){
+  const cards = document.querySelectorAll('.fr-card[id^="fr-card-"]');
+  cards.forEach(card=>{
+    const name = card.querySelector('.fr-name').textContent.toLowerCase();
+    card.style.display = name.includes(query.toLowerCase()) ? '' : 'none';
+  });
+}
+
+function openFindFriendsModal(){
+  document.getElementById('modal-box').innerHTML = `
+    <div class="modal-title">Find Friends</div>
+    <div class="modal-sub">Search for readers on ReadAlong</div>
+    <div class="field-label">Username or name</div>
+    <input class="finput" id="find-input" placeholder="e.g. priya_reads" oninput="findFriendSearch(this.value)"/>
+    <div id="find-results" style="margin-bottom:16px;"></div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">close</button>
+    </div>`;
+  openOverlay();
+}
+
+function findFriendSearch(q){
+  const all=[
+    {initials:'LN',color:'#2D6A4F',name:'luna_novel',   meta:'Reads literary fiction'},
+    {initials:'BW',color:'#D97B0A',name:'bookworm99',    meta:'Reads everything'},
+    {initials:'RR',color:'#40916C',name:'rapid_reader',  meta:'Reads thrillers'},
+  ];
+  const res=document.getElementById('find-results');
+  if(!q.trim()){ res.innerHTML=''; return; }
+  const hits=all.filter(u=>u.name.includes(q.toLowerCase()));
+  res.innerHTML=hits.length===0?'<div style="color:#9DC9B3;font-size:18px;padding:8px 0;">No users found</div>':
+    hits.map(u=>`<div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:0.5px solid #C5EDD8;">
+      <div style="width:36px;height:36px;border-radius:50%;background:${u.color};display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:#fff">${u.initials}</div>
+      <div style="flex:1"><div style="font-size:19px;color:#112B1E;">${u.name}</div><div style="font-size:16px;color:#0A5235;">${u.meta}</div></div>
+      <button class="fr-accept" style="font-size:16px;padding:6px 14px;" onclick="showToast('Request sent to ${u.name}')">+ Add</button>
+    </div>`).join('');
 }
 
 render();
